@@ -12,14 +12,14 @@ body {
     background-color: indigo;
 }
 
-.gameContainer {
+ .gameContainer {
     display: flex;
     flex-direction: column;
     width: 100vw;
     align-items: center;
     justify-content: space-evenly;
     height: 100vh;
-}
+} 
 
 canvas {
     background-color: yellow;
@@ -35,6 +35,7 @@ button {
     margin: 0 8px;
     font-size: 1.8rem;
     font-weight: bold;
+    
 }
 
 .message {
@@ -51,7 +52,7 @@ p {
 
 @media (max-width: 490px) {
     .btns {
-        
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
