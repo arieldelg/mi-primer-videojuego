@@ -15,6 +15,13 @@ const positionPlayer = {
     y: undefined
 }
 
+const ganaste = {
+    x: undefined,
+    y: undefined
+}
+
+const positionBombas = []
+
 
 const renderCanvas = () => {
     if(window.innerHeight > window.innerWidth) {
@@ -49,7 +56,8 @@ const startGame = () => {
             const emoji = emojis[j]
             const positionX = ((elementsSize ) * jIndex);
             const positionY = ((elementsSize) * (iIndex + 1));
-            game.fillText(emoji, positionX, positionY)
+            
+           
             
             if(j === 'O') {
                 if(!positionPlayer.x && !positionPlayer.y) {
@@ -58,9 +66,21 @@ const startGame = () => {
                 }
                 /* positionDoorX = positionX;  parte de la funcion 1
                 positionDoorY = positionY */
+            } else if(j === 'I') {
+                ganaste.x = positionX;
+                ganaste.y = positionY 
+            } else if (j === 'X') {
+                if(positionBombas.length !== positionBombas.length) {
+                positionBombas.push({
+                    x: positionX,
+                    y: positionY
+                });
             }
+            }
+            game.fillText(emoji, positionX, positionY)
         })
     });
+    
     movePlayer()
     //con un ciclo for
     /* for (let i = 0; i < mapRows.length; i++) {
@@ -69,6 +89,7 @@ const startGame = () => {
             game.fillText(emojis[emojisToPrint], ((elementsSize + 1) * [j]) + 46 ,((elementsSize) * [i]) + 40) 
         }
     }  */
+    
 }
 
 const pressKey = (event) => {
@@ -84,26 +105,39 @@ const mouseUp = () => {
     if(positionPlayer.y !== elementsSize) {
         positionPlayer.y -=  elementsSize
         startGame()
-    } else {
-        console.log('ya no puedes seguirle',positionPlayer.y ) 
-    }
+    } 
     //drawDoor() parte de la funcion 1
 }
 const mouseDown = () => {
-   console.log(positionPlayer.y)
-   if(positionPlayer.y !== canvasSize) {
+    console.log(positionPlayer.x, positionPlayer.y);
+    if (canvasSize === 195) {
+        if(positionPlayer.y < canvasSize - elementsSize) {
+            positionPlayer.y += elementsSize
+            startGame()
+        }
+    } else if (positionPlayer.y < canvasSize) {
     positionPlayer.y += elementsSize
     startGame()
    }
-    
 }
 const mouseRight = () => {
-    positionPlayer.x += elementsSize
-    startGame()
+    console.log(positionPlayer.x , positionPlayer.y)
+    if(canvasSize === 195) {
+        if(positionPlayer.x < canvasSize - (elementsSize * 2)) {
+            positionPlayer.x += elementsSize
+        startGame()
+        }
+    } else if (positionPlayer.x < canvasSize - elementsSize) {
+        positionPlayer.x += elementsSize
+        startGame()
+    }
 }
 const mouseLeft = () => {
-    positionPlayer.x -= elementsSize
-    startGame()
+    if(positionPlayer.x !== 0) {
+        positionPlayer.x -= elementsSize
+        startGame()
+    }
+    
 }
 
 window.addEventListener('keydown', pressKey);
@@ -118,7 +152,11 @@ window.addEventListener('resize', renderCanvas)
 window.addEventListener('load', renderCanvas);
 
 const movePlayer = () => {
+    if (ganaste.x === positionPlayer.x && ganaste.y === positionPlayer.y) {
+        console.log('ganaste')
+    }
     game.fillText(emojis['PLAYER'], positionPlayer.x, positionPlayer.y)
+    
 }
 
 /* 
