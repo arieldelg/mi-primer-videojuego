@@ -18,7 +18,7 @@ let positionBombas = []
 let lifes = 3;
 let timestart;
 let setIntervalGame;
-let clearIntervalGame;
+
 
 const positionPlayer = {
     x: undefined,
