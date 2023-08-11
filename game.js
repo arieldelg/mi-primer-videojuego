@@ -236,7 +236,7 @@ const gameEnd = () => {
     }
     positionPlayer.x = undefined
     positionPlayer.y = undefined
-    
+    startGame()
     /* window.location.reload() */
 }
 
