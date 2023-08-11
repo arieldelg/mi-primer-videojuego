@@ -50,7 +50,7 @@ p {
     text-align: start;
 }
 
-@media (max-width: 490px) {
+@media (max-width: 680px) {
     .btns {
         width: 100%;
         display: flex;
@@ -59,7 +59,12 @@ p {
     }
 
     #up, #down {
-        margin: 15px 390px;
+        margin: 5px 390px;
+        
+    }
+
+    #left, #right {
+        margin: 5px 5px;
         
     }
 }
