@@ -254,6 +254,14 @@ const recordTime = () => {
     record.innerHTML = localStorage.getItem('recordTime');
 }
 
+const checarle = (event) => {
+    if(event.keyCode === 55) {
+        localStorage.removeItem('recordTime')
+    }
+}
+
+window.addEventListener('keydown', checarle)
+
 /* 
 parte de la funcion 1
 const drawDoor = () => {
